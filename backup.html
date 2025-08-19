@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Health Guardian - Your Personal Health AI Companion</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --accent: #7c3aed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(37,99,235,0.1), rgba(124,58,237,0.1));
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #ddd;
+            position: relative;
+        }
+
+        .product-content {
+            padding: 30px;
+        }
+
+        .product-content h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Call to Action */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button.white {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav">
+            <div class="logo">Universal Health Guardian</div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text" data-aos="fade-right">
+                <h1>Your Personal Health Guardian</h1>
+                <p>Revolutionary AI-powered health monitoring system that works offline, predicts emergencies, and ensures your safety 24/7.</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <img src="https://placehold.co/600x400" alt="Smart Health Watch">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Revolutionary Features</h2>
+                <p>Advanced healthcare technology at your wrist</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Offline AI Core</h3>
+                    <p>Powerful AI analysis that works without internet, ensuring continuous health monitoring.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>24/7 Health Monitoring</h3>
+                    <p>Continuous tracking of vital signs with predictive health analysis.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>Emergency Response</h3>
+                    <p>Automated emergency alerts and coordination with medical services.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-drone"></i>
+                    </div>
+                    <h3>Drone Medicine Delivery</h3>
+                    <p>Quick emergency medication delivery through autonomous drones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Product Ecosystem</h2>
+                <p>Comprehensive health monitoring solutions for everyone</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card" data-aos="fade-up">
+                    <div class="product-image">
+                        <!-- Add actual product image -->
+                    </div>
+                    <div class="product-content">
+                        <h3>Health Smartwatch</h3>
+                        <p>All-in-one health monitoring device with advanced sensors and AI.</p>
+                    </div>
+                </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <!-- Add actual product image -->
+                    </div>
+                    <div class="product-content">
+                        <h3>Health Wristband</h3>
+                        <p>Specialized bands for specific health conditions and monitoring needs.</p>
+                    </div>
+                </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <!-- Add actual product image -->
+                    </div>
+                    <div class="product-content">
+                        <h3>Mobile App</h3>
+                        <p>Comprehensive health management app with or without wearables.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Take Control of Your Health?</h2>
+            <p>Join thousands of users who trust Universal Health Guardian for their health monitoring needs.</p>
+            <a href="#contact" class="cta-button white">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Universal Health Guardian</h3>
+                <p>Revolutionary healthcare technology for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> contact@uhg.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
